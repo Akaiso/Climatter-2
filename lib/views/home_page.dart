@@ -63,15 +63,15 @@ class HomePage extends StatelessWidget {
           ],
         ),
         actions: const [
-          CircleAvatar(
-            // backgroundColor: Colors.orangeAccent,
-            child: Image(
-              image: NetworkImage(
-                  'https://freepngimg.com/download/cartoon/4-2-cartoon-transparent.png'),
+          Padding(
+            padding: EdgeInsets.only(right: 20.0),
+            child: CircleAvatar(
+              // backgroundColor: Colors.orangeAccent,
+              child: Image(
+                image: NetworkImage(
+                    'https://freepngimg.com/download/cartoon/4-2-cartoon-transparent.png'),
+              ),
             ),
-          ),
-          SizedBox(
-            width: 20,
           ),
         ],
       ),
@@ -509,7 +509,7 @@ class HomePage extends StatelessWidget {
                           return Row(
                             children: [
                               const SizedBox(
-                                width: 5,
+                                width: 15,
                               ),
                               Container(
                                 decoration: BoxDecoration(

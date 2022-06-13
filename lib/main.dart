@@ -1,6 +1,7 @@
 
 
 
+import 'package:climatter_2/views/air_quality_page.dart';
 import 'package:climatter_2/views/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  const GetMaterialApp(
       home: SafeArea(
-        child: HomePage(),
+        // child: HomePage(),
+        child: AirQualityPage(),
       ),
     );
   }
