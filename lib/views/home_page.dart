@@ -1,3 +1,4 @@
+import 'package:climatter_2/views/air_quality_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +15,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white70,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
         elevation: 0,
@@ -90,7 +92,7 @@ class HomePage extends StatelessWidget {
                     height: 200,
                     width: Get.width,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(30),
                         gradient: kGradient1),
                     child: Stack(
                       clipBehavior: Clip.none,
@@ -241,220 +243,222 @@ class HomePage extends StatelessWidget {
                   ),
 
                   ///THE SECOND CARD
-                  Container(
-                    height: 200,
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.white,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: const [
-                                  Icon(
-                                    Icons.cloud_done_outlined,
-                                    color: Colors.deepPurple,
-                                    size: 30,
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text('Air Quality',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w700))
-                                ],
-                              ),
-                              const Icon(Icons.refresh),
-                            ],
-                          ),
+                  InkWell(onTap:(){Navigator.push(context,MaterialPageRoute(builder:(context)=>AirQualityPage()));},
+                    child: Container(
+                      height: 200,
+                      width: Get.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.white,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: const [
+                                    Icon(
+                                      Icons.cloud_done_outlined,
+                                      color: Colors.deepPurple,
+                                      size: 30,
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text('Air Quality',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w700))
+                                  ],
+                                ),
+                                const Icon(Icons.refresh),
+                              ],
+                            ),
 
-                          ///SECOND ROW
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                child: Wrap(
-                                  direction: Axis.horizontal,
-                                  children: [
-                                    const Icon(
-                                      Icons.cloud_outlined,
-                                      color: Colors.deepPurple,
-                                      size: 30,
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    Wrap(
-                                      direction: Axis.vertical,
-                                      children: const [
-                                        Text(
-                                          'hey',
-                                          style: TextStyle(
-                                              color: Colors.grey, fontSize: 12),
-                                        ),
-                                        Text('sup',
+                            ///SECOND ROW
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(
+                                  child: Wrap(
+                                    direction: Axis.horizontal,
+                                    children: [
+                                      const Icon(
+                                        Icons.cloud_outlined,
+                                        color: Colors.deepPurple,
+                                        size: 30,
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      Wrap(
+                                        direction: Axis.vertical,
+                                        children: const [
+                                          Text(
+                                            'hey',
                                             style: TextStyle(
-                                                fontWeight: FontWeight.bold))
-                                      ],
-                                    )
-                                  ],
+                                                color: Colors.grey, fontSize: 12),
+                                          ),
+                                          Text('sup',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold))
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                child: Wrap(
-                                  direction: Axis.horizontal,
-                                  children: [
-                                    const Icon(
-                                      Icons.cloud_outlined,
-                                      color: Colors.deepPurple,
-                                      size: 30,
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    Wrap(
-                                      direction: Axis.vertical,
-                                      children: const [
-                                        Text(
-                                          'hey',
-                                          style: TextStyle(
-                                              color: Colors.grey, fontSize: 12),
-                                        ),
-                                        Text('sup',
+                                SizedBox(
+                                  child: Wrap(
+                                    direction: Axis.horizontal,
+                                    children: [
+                                      const Icon(
+                                        Icons.cloud_outlined,
+                                        color: Colors.deepPurple,
+                                        size: 30,
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      Wrap(
+                                        direction: Axis.vertical,
+                                        children: const [
+                                          Text(
+                                            'hey',
                                             style: TextStyle(
-                                                fontWeight: FontWeight.bold))
-                                      ],
-                                    )
-                                  ],
+                                                color: Colors.grey, fontSize: 12),
+                                          ),
+                                          Text('sup',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold))
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              Container(
-                                child: Wrap(
-                                  direction: Axis.horizontal,
-                                  children: [
-                                    const Icon(
-                                      Icons.cloud_outlined,
-                                      color: Colors.deepPurple,
-                                      size: 30,
-                                    ),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Wrap(
-                                      direction: Axis.vertical,
-                                      children: const [
-                                        Text(
-                                          'hey',
-                                          style: TextStyle(
-                                              color: Colors.grey, fontSize: 12),
-                                        ),
-                                        Text('sup',
+                                Container(
+                                  child: Wrap(
+                                    direction: Axis.horizontal,
+                                    children: [
+                                      const Icon(
+                                        Icons.cloud_outlined,
+                                        color: Colors.deepPurple,
+                                        size: 30,
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Wrap(
+                                        direction: Axis.vertical,
+                                        children: const [
+                                          Text(
+                                            'hey',
                                             style: TextStyle(
-                                                fontWeight: FontWeight.bold))
-                                      ],
-                                    )
-                                  ],
+                                                color: Colors.grey, fontSize: 12),
+                                          ),
+                                          Text('sup',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold))
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                child: Wrap(
-                                  direction: Axis.horizontal,
-                                  children: [
-                                    const Icon(
-                                      Icons.cloud_outlined,
-                                      color: Colors.deepPurple,
-                                      size: 30,
-                                    ),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Wrap(
-                                      direction: Axis.vertical,
-                                      children: const [
-                                        Text(
-                                          'hey',
-                                          style: TextStyle(
-                                              color: Colors.grey, fontSize: 12),
-                                        ),
-                                        Text('sup',
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  child: Wrap(
+                                    direction: Axis.horizontal,
+                                    children: [
+                                      const Icon(
+                                        Icons.cloud_outlined,
+                                        color: Colors.deepPurple,
+                                        size: 30,
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Wrap(
+                                        direction: Axis.vertical,
+                                        children: const [
+                                          Text(
+                                            'hey',
                                             style: TextStyle(
-                                                fontWeight: FontWeight.bold))
-                                      ],
-                                    )
-                                  ],
+                                                color: Colors.grey, fontSize: 12),
+                                          ),
+                                          Text('sup',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold))
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                child: Wrap(
-                                  direction: Axis.horizontal,
-                                  children: [
-                                    const Icon(
-                                      Icons.cloud_outlined,
-                                      color: Colors.deepPurple,
-                                      size: 30,
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    Wrap(
-                                      direction: Axis.vertical,
-                                      children: const [
-                                        Text(
-                                          'hey',
-                                          style: TextStyle(
-                                              color: Colors.grey, fontSize: 12),
-                                        ),
-                                        Text('sup',
+                                SizedBox(
+                                  child: Wrap(
+                                    direction: Axis.horizontal,
+                                    children: [
+                                      const Icon(
+                                        Icons.cloud_outlined,
+                                        color: Colors.deepPurple,
+                                        size: 30,
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      Wrap(
+                                        direction: Axis.vertical,
+                                        children: const [
+                                          Text(
+                                            'hey',
                                             style: TextStyle(
-                                                fontWeight: FontWeight.bold))
-                                      ],
-                                    )
-                                  ],
+                                                color: Colors.grey, fontSize: 12),
+                                          ),
+                                          Text('sup',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold))
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                child: Wrap(
-                                  direction: Axis.horizontal,
-                                  children: [
-                                    const Icon(
-                                      Icons.cloud_outlined,
-                                      color: Colors.deepPurple,
-                                      size: 30,
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    Wrap(
-                                      direction: Axis.vertical,
-                                      children: const [
-                                        Text(
-                                          'hey',
-                                          style: TextStyle(
-                                              color: Colors.grey, fontSize: 12),
-                                        ),
-                                        Text('sup',
+                                SizedBox(
+                                  child: Wrap(
+                                    direction: Axis.horizontal,
+                                    children: [
+                                      const Icon(
+                                        Icons.cloud_outlined,
+                                        color: Colors.deepPurple,
+                                        size: 30,
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      Wrap(
+                                        direction: Axis.vertical,
+                                        children: const [
+                                          Text(
+                                            'hey',
                                             style: TextStyle(
-                                                fontWeight: FontWeight.bold))
-                                      ],
-                                    )
-                                  ],
+                                                color: Colors.grey, fontSize: 12),
+                                          ),
+                                          Text('sup',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold))
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
