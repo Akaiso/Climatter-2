@@ -1,33 +1,157 @@
+
 import 'package:climatter_2/views/air_quality_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'dart:ui';
-
 import '../constants/colors.dart';
+import 'package:anim_search_bar/anim_search_bar.dart';
+import 'package:geolocator/geolocator.dart';
 
-class HomePage extends StatelessWidget {
+
+
+
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+
+  void geolocation() async{
+    Position position = await GeolocatorPlatform.instance.getCurrentPosition(locationSettings: LocationSettings(accuracy: LocationAccuracy.low));
+    print('Naaaaaaaaaaaa heeeere ooooooooooooo current location: $position');
+  }
+
+Future<LocationPermission> permit () async {
+    LocationPermission permission = await Geolocator.requestPermission();
+    return permission;
+  }
+
+
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
+
+  TextEditingController txtController = TextEditingController();
+  TextEditingController _controller = TextEditingController();
+  OverlayEntry? entry ;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+
+
+  @override
   Widget build(BuildContext context) {
+
+    geolocation();
+
     return Scaffold(
-      backgroundColor: Colors.white70,
+        drawer: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
+              ),
+              margin: EdgeInsets.symmetric(vertical: 90),
+              height: 100,
+              child: Drawer(
+                backgroundColor: Colors.red,
+                // Add a ListView to the drawer. This ensures the user can scroll
+                // through the options in the drawer if there isn't enough vertical
+                // space to fit everything.
+                child: ListView(
+                  // Important: Remove any padding from the ListView.
+                  padding: EdgeInsets.zero,
+                  children: [
+                     DrawerHeader(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          style: BorderStyle.none
+                        ),
+                        gradient: kGradient1
+                      ),
+                      child: TextFormField(
+                        controller: _controller,
+                        style: TextStyle(color: Colors.blue),
+                      // controller: searchController,
+                        decoration: InputDecoration(
+                          filled: true,
+                          suffixIcon: Icon(Icons.adaptive.arrow_forward, color: Colors.blue),
+                          fillColor: Colors.white,
+                          hintText: 'Search location',
+                          hintStyle: TextStyle(color: Colors.blue),
+                          helperText: '- The name of a city you are interested in -',
+                          helperStyle: TextStyle(color: Colors.white, ),
+                          // border: OutlineInputBorder(
+                          //   borderRadius: BorderRadius.circular(10),
+                          //   borderSide:   BorderSide.none,
+                          // ),
+                          border: InputBorder.none
+                        ),
+                      ),
+                    ),
+                    ListTile(
+                      title: const Text('Item 1'),
+                      onTap: () {
+                        // Update the state of the app
+                        // ...
+                        // Then close the drawer
+                        Navigator.pop(context);
+                      },
+                    ),
+
+                  ],
+                ),
+              ),
+            ),
+
+      backgroundColor: kScaffoldbg,
       appBar: AppBar(
+        leadingWidth: 75,
         automaticallyImplyLeading: false,
+        leading: SizedBox(width:100,height:20,child: Expanded(flex:1,child: Row(children: [SizedBox(width: 10,),const Text('SLIDE',style: TextStyle(color:Colors.blue,fontWeight: FontWeight.bold,fontSize: 15),), Icon(Icons.arrow_forward_ios_sharp, color: Colors.blue,)],)),),//(child: const Icon(Icons.search,color: Colors.blue,size: 35,)),
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
         elevation: 0,
         toolbarHeight: 80,
         centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.apps_rounded,
-            color: Colors.orange,
-          ),
-          onPressed: () {},
-        ),
+
+        // Container(height: 20,width: 20,child: Stack(
+        //   children: [
+        //     Positioned(
+        //       child: AnimSearchBar(
+        //         textController: txtController,
+        //         width: 400,
+        //         onSuffixTap: () {
+        //           setState(() {
+        //             txtController.clear();
+        //           });
+        //         },
+        //       ),
+        //     ),
+        //   ],
+        // ),),
+        // IconButton(color: Colors.blue,
+        //     icon:  Icon(
+        //     Icons.location_searching,size: 30,
+        //     color: Colors.orange,semanticLabel: 'Location search',
+        //   ), onPressed: () {
+        //   showOverlay();
+        //   },
+        // ),
+
+
+
+        // IconButton(color: Colors.blue,
+        //   icon: const Icon(
+        //     Icons.location_searching,size: 30,
+        //     color: Colors.orange,semanticLabel: 'Location search',
+        //   ),
+        //   onPressed: () {},
+        // ),
         title: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -85,8 +209,9 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+
                   const SizedBox(
-                    height: 50,
+                    height: 30,
                   ),
                   Container(
                     height: 200,
@@ -108,6 +233,8 @@ class HomePage extends StatelessWidget {
                             ),
                           ),
                         ),
+
+
 
                         Positioned(
                           right: 20,
@@ -239,11 +366,17 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 40,
+                    height: 30,
                   ),
 
                   ///THE SECOND CARD
-                  InkWell(onTap:(){Navigator.push(context,MaterialPageRoute(builder:(context)=>AirQualityPage()));},
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AirQualityPage()));
+                    },
                     child: Container(
                       height: 200,
                       width: Get.width,
@@ -300,7 +433,8 @@ class HomePage extends StatelessWidget {
                                           Text(
                                             'hey',
                                             style: TextStyle(
-                                                color: Colors.grey, fontSize: 12),
+                                                color: Colors.grey,
+                                                fontSize: 12),
                                           ),
                                           Text('sup',
                                               style: TextStyle(
@@ -328,7 +462,8 @@ class HomePage extends StatelessWidget {
                                           Text(
                                             'hey',
                                             style: TextStyle(
-                                                color: Colors.grey, fontSize: 12),
+                                                color: Colors.grey,
+                                                fontSize: 12),
                                           ),
                                           Text('sup',
                                               style: TextStyle(
@@ -347,7 +482,7 @@ class HomePage extends StatelessWidget {
                                         color: Colors.deepPurple,
                                         size: 30,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 5,
                                       ),
                                       Wrap(
@@ -356,7 +491,8 @@ class HomePage extends StatelessWidget {
                                           Text(
                                             'hey',
                                             style: TextStyle(
-                                                color: Colors.grey, fontSize: 12),
+                                                color: Colors.grey,
+                                                fontSize: 12),
                                           ),
                                           Text('sup',
                                               style: TextStyle(
@@ -380,7 +516,7 @@ class HomePage extends StatelessWidget {
                                         color: Colors.deepPurple,
                                         size: 30,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 5,
                                       ),
                                       Wrap(
@@ -389,7 +525,8 @@ class HomePage extends StatelessWidget {
                                           Text(
                                             'hey',
                                             style: TextStyle(
-                                                color: Colors.grey, fontSize: 12),
+                                                color: Colors.grey,
+                                                fontSize: 12),
                                           ),
                                           Text('sup',
                                               style: TextStyle(
@@ -417,7 +554,8 @@ class HomePage extends StatelessWidget {
                                           Text(
                                             'hey',
                                             style: TextStyle(
-                                                color: Colors.grey, fontSize: 12),
+                                                color: Colors.grey,
+                                                fontSize: 12),
                                           ),
                                           Text('sup',
                                               style: TextStyle(
@@ -445,7 +583,8 @@ class HomePage extends StatelessWidget {
                                           Text(
                                             'hey',
                                             style: TextStyle(
-                                                color: Colors.grey, fontSize: 12),
+                                                color: Colors.grey,
+                                                fontSize: 12),
                                           ),
                                           Text('sup',
                                               style: TextStyle(
@@ -529,17 +668,29 @@ class HomePage extends StatelessWidget {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          const Text('MON', style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),),
+                                          const Text(
+                                            'MON',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.white),
+                                          ),
                                           const SizedBox(
                                             height: 5,
                                           ),
-                                           Text('${index}Feb', style: TextStyle(color: Colors.white),),
-                                          Container(
-                                              height: 20),
+                                          Text(
+                                            '${index}Feb',
+                                            style: const TextStyle(
+                                                color: Colors.white),
+                                          ),
+                                          Container(height: 20),
                                           const Icon(Icons.cloud),
-                                          Container(
-                                              height: 20),
-                                          const Text('26', style: TextStyle(fontSize: 23,fontWeight: FontWeight.bold),),
+                                          Container(height: 20),
+                                          const Text(
+                                            '26',
+                                            style: TextStyle(
+                                                fontSize: 23,
+                                                fontWeight: FontWeight.bold),
+                                          ),
                                           const SizedBox(
                                             height: 10,
                                           ),
@@ -549,7 +700,11 @@ class HomePage extends StatelessWidget {
                                                   BorderRadius.circular(20),
                                               color: Colors.redAccent,
                                             ),
-                                            child: const Text('193',style: TextStyle(color: Colors.white),),
+                                            child: const Text(
+                                              '193',
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
                                             padding: const EdgeInsets.symmetric(
                                                 horizontal: 6, vertical: 2),
                                           )
@@ -583,4 +738,73 @@ class HomePage extends StatelessWidget {
           )),
     );
   }
+
+
+ // void showOverlay() {
+ //    var txtController = TextEditingController();
+ //    entry = OverlayEntry(builder: (context) =>
+ //        Positioned(
+ //          top:40,
+ //          left: 20,
+ //          child: AnimSearchBar(
+ //            textController: txtController,
+ //            width: 400,
+ //            onSuffixTap: () {
+ //              setState(() {
+ //                txtController.clear();
+ //              });
+ //            },
+ //          ),
+ //        ),);
+ //    final overlay = Overlay.of(context)!;
+ //    overlay.insert(entry!);
+ //  }
+
+
 }
+
+
+
+
+class Osearch extends StatefulWidget {
+  const Osearch({Key? key}) : super(key: key);
+
+  @override
+  _OsearchState createState() => _OsearchState();
+}
+
+class _OsearchState extends State<Osearch> {
+
+  @override
+  Widget build(BuildContext context) {
+    void showOverlay() {
+      var txtController = TextEditingController();
+      var entry = OverlayEntry(builder: (context) =>
+          Positioned(
+            top:40,
+            left: 20,
+            child: AnimSearchBar(
+              textController: txtController,
+              width: 400,
+              onSuffixTap: () {
+                setState(() {
+                  txtController.clear();
+                });
+              },
+            ),
+          ),);
+      final overlay = Overlay.of(context)!;
+      overlay.insert(entry);
+    }
+    return Container(
+      child: FloatingActionButton(onPressed: (){},),
+    );
+  }
+}
+
+
+
+
+
+
+

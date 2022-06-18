@@ -1,5 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 import '../constants/colors.dart';
 import 'home_page.dart';
@@ -10,8 +12,43 @@ class AirQualityPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white70,
-      body: SafeArea(top: true,
+      bottomNavigationBar: Stack(
+        clipBehavior: Clip.hardEdge,
+        children: [
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+            width: double.infinity,
+            height: 50,
+            decoration: BoxDecoration(
+              gradient: kGradient1,
+              borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(100), bottom: Radius.circular(100)),
+            ),
+          ),
+          Positioned(
+            top: 20,
+              left: 30,
+              child: CircleAvatar(
+            backgroundColor: Colors.white,
+            child: Icon(Icons.analytics_outlined),
+          )),
+          Positioned(
+            top: 30,
+            left: 80,
+            child: Text('City air quality ranking', style: TextStyle(color: Colors.white),),),
+          Positioned(
+            top: 30,
+            left: 250,
+            child: Text('No.531', style: TextStyle(color: Colors.white),),),
+          Positioned(
+            top: 26,
+            left: 290,
+            child: Icon(Icons.keyboard_arrow_right, color: Colors.white,),)
+        ],
+      ),
+      backgroundColor: kScaffoldbg,
+      body: SafeArea(
+        top: true,
         child:
             CustomScrollView(physics: const BouncingScrollPhysics(), slivers: [
           SliverAppBar(
@@ -27,7 +64,7 @@ class AirQualityPage extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                   color: Colors.black),
             ),
-            pinned: false,
+            pinned: true,
             floating: false,
             snap: false,
             expandedHeight: 350,
@@ -48,7 +85,12 @@ class AirQualityPage extends StatelessWidget {
               padding: const EdgeInsets.only(left: 15.0),
               child: FloatingActionButton(
                 backgroundColor: Colors.white,
-                onPressed: () {Navigator.pop(context,MaterialPageRoute(builder: (context)=>HomePage()));},
+                onPressed: () {
+                  Navigator.pop(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HomePage()));
+                },
                 child: const Icon(
                   Icons.arrow_back,
                   color: Colors.black,
@@ -61,10 +103,10 @@ class AirQualityPage extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 18.0),
                 child: Container(
                   height: 350,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.vertical(bottom:Radius.circular(10) )
-                  ),
+                      borderRadius:
+                          BorderRadius.vertical(bottom: Radius.circular(10))),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -118,7 +160,7 @@ class AirQualityPage extends StatelessWidget {
                           ),
                         ),
                       ]),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Expanded(
@@ -168,7 +210,8 @@ class AirQualityPage extends StatelessWidget {
                                                 '26',
                                                 style: TextStyle(
                                                     fontSize: 23,
-                                                    fontWeight: FontWeight.bold),
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
                                               const SizedBox(
                                                 height: 10,
@@ -208,14 +251,101 @@ class AirQualityPage extends StatelessWidget {
           ),
           SliverList(
               delegate: SliverChildListDelegate([
-            SizedBox(
-              width: double.infinity,
-              height: 500,
-              child: Image.asset('assets/images/rainy cloud.png'),
+            const SizedBox(
+              height: 50,
             ),
+            // SizedBox(
+            //   width: double.infinity,
+            //   height: 100,
+            //   child: Image.asset('assets/images/rainy cloud.png'),
+            // ),
+            const SizedBox(
+              height: 10,
+            ),
+
+            SizedBox(
+              height: 300,
+              width: 300,
+              child: _getRadialGauge(),
+            ),
+
+            const SizedBox(
+              height: 100,
+            )
           ]))
         ]),
       ),
     );
   }
+}
+
+
+
+
+
+Widget _getRadialGauge() {
+  return SfRadialGauge(
+      title: const GaugeTitle(
+          text: '',
+          textStyle: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+      axes: <RadialAxis>[
+        RadialAxis(
+          minimum: 0, maximum: 150, interval: 10,
+          //   ranges: <GaugeRange>[
+          //   GaugeRange(
+          //       startValue: 0,
+          //       endValue: 100,
+          //        gradient: const SweepGradient(colors:  <Color>[
+          //          Color(0xffea76f4),
+          //          Color(0xff4b78f7),
+          //          Colors.red,
+          //        ]),
+          //       startWidth: 15,
+          //       endWidth: 15),
+          // ],
+          pointers: const <GaugePointer>[
+            NeedlePointer(
+              value: 100,
+              needleStartWidth: 1,
+              needleEndWidth: 1,
+              lengthUnit: GaugeSizeUnit.factor,
+              enableAnimation: true,
+            ),
+            RangePointer(
+              value: 100,
+              enableAnimation: true,
+              gradient: const SweepGradient(colors: <Color>[
+                Color(0xffea76f4),
+                Color(0xff4b78f7),
+                Colors.red,
+              ]),
+            )
+          ],
+          annotations: <GaugeAnnotation>[
+            GaugeAnnotation(
+                widget: Container(
+                    child: const Text('100.0',
+                        style: TextStyle(
+                            fontSize: 40, fontWeight: FontWeight.bold))),
+                angle: 90,
+                positionFactor: 0.5),
+            GaugeAnnotation(
+                widget: Container(
+                    child: const Text('Moderate',
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold))),
+                angle: 270,
+                positionFactor: 0.5),
+            GaugeAnnotation(
+                widget: Container(
+                    child: const Text('AQI',
+                        style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.purple))),
+                angle: 90,
+                positionFactor: 0.3),
+          ],
+        )
+      ]);
 }

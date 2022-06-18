@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 ///this is not of type Color.
 Gradient kGradient1 = const LinearGradient(
@@ -11,3 +12,5 @@ Gradient kGradient1 = const LinearGradient(
       Color(0xffea76f4),
       Color(0xff4b78f7),
     ]);
+
+Color kScaffoldbg =  const Color(0xffFCF1FD);
