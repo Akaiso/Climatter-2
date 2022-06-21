@@ -2,7 +2,6 @@
 
 
 import 'package:climatter_2/views/home_page.dart';
-import 'package:climatter_2/views/stack_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  const GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       home: SafeArea(
          child: HomePage(),
         //child: AirQualityPage(),

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 ///this is not of type Color.
 Gradient kGradient1 = const LinearGradient(
-    stops: [0.4, 3],
+    stops: [0.0, 3],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     colors: [

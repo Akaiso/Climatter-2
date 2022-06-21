@@ -6,7 +6,6 @@
 //     final weatherModel = weatherModelFromJson(jsonString);
 
 import 'dart:convert';
-import 'package:flutter/material.dart';
 
 WeatherModel weatherModelFromJson(String str) => WeatherModel.fromJson(json.decode(str));
 

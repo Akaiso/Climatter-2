@@ -17,8 +17,8 @@ class DioClient {
         dynamic response = jsonDecode(res.data);
         return response;
       }
-    } on DioError catch (e) {
-      throw(e);
+    } on DioError {
+      rethrow;
     }
   }
 }

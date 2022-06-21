@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 import '../constants/colors.dart';
@@ -16,31 +14,31 @@ class AirQualityPage extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         children: [
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+            margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
             width: double.infinity,
             height: 50,
             decoration: BoxDecoration(
               gradient: kGradient1,
-              borderRadius: BorderRadius.vertical(
+              borderRadius: const BorderRadius.vertical(
                   top: Radius.circular(100), bottom: Radius.circular(100)),
             ),
           ),
-          Positioned(
+          const Positioned(
             top: 20,
               left: 30,
               child: CircleAvatar(
             backgroundColor: Colors.white,
             child: Icon(Icons.analytics_outlined),
           )),
-          Positioned(
+          const Positioned(
             top: 30,
             left: 80,
             child: Text('City air quality ranking', style: TextStyle(color: Colors.white),),),
-          Positioned(
+          const Positioned(
             top: 30,
             left: 250,
             child: Text('No.531', style: TextStyle(color: Colors.white),),),
-          Positioned(
+          const Positioned(
             top: 26,
             left: 290,
             child: Icon(Icons.keyboard_arrow_right, color: Colors.white,),)
@@ -314,7 +312,7 @@ Widget _getRadialGauge() {
             RangePointer(
               value: 100,
               enableAnimation: true,
-              gradient: const SweepGradient(colors: <Color>[
+              gradient: SweepGradient(colors: <Color>[
                 Color(0xffea76f4),
                 Color(0xff4b78f7),
                 Colors.red,
