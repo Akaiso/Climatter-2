@@ -75,6 +75,7 @@ class WeatherModel {
   };
 }
 
+
 class Clouds {
   Clouds({
     required this.all,
@@ -90,6 +91,7 @@ class Clouds {
     "all": all,
   };
 }
+
 
 class Coord {
   Coord({
@@ -110,6 +112,7 @@ class Coord {
     "lat": lat,
   };
 }
+
 
 class Main {
   Main({
@@ -229,4 +232,34 @@ class Wind {
     "deg": deg,
     "gust": gust,
   };
+}
+
+class WeatherIcon {
+
+  selectIcon(int condition){
+    if(condition < 300){
+      return 'assets/images/gif/stormy_cloud_animation.gif';
+    }
+    else if(condition < 400){
+      return 'assets/images/gif/heavy_rain.gif';
+    }
+    else if(condition < 600){
+      return 'assets/images/gif/partly_cloudy.gif';
+    }
+    else if(condition < 700){
+      return 'assets/images/partly-cloudy.png';
+    }
+    else if(condition < 800){
+      return 'assets/images/windy.png';
+    }
+    else if(condition == 800){
+      return 'assets/images/p5 - Copy.png';
+    }
+    else if(condition <= 804){
+      return 'assets/images/windy.png';
+    }
+    else {
+      return 'assets/images/sea.png';
+    }
+  }
 }

@@ -19,11 +19,7 @@
 //   }
 // }
 
-import 'package:climatter_2/model/weather_model.dart';
 import 'package:get/get.dart';
-
-import '../services/city_call_service.dart';
-
 class CityCallController extends GetxController{
 
 

@@ -14,3 +14,13 @@ Gradient kGradient1 = const LinearGradient(
     ]);
 
 Color kScaffoldbg =  const Color(0xffFCF1FD);
+
+
+Gradient kListViewNoColor = const LinearGradient(
+    stops: [0.0, 3],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      Colors.transparent,
+      Colors.transparent,
+    ]);

@@ -16,7 +16,7 @@ class Location {
       //         accuracy: LocationAccuracy.high));
       longitude = position.longitude;
       latitude = position.latitude;
-      print('Naaaaaaaaaaaa heeeere ooooooooooooo current location: ${position}');
+      print('Naaaaaaaaaaaa heeeere ooooooooooooo current location: $position');
 
     }on DioError catch(e){
       throw Exception('$e grant internet access or connect to the internet');

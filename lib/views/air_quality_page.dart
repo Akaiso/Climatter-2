@@ -161,7 +161,8 @@ class AirQualityPage extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      Expanded(
+                      SizedBox(
+                        height: 180,
                         child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             primary: true,
@@ -171,25 +172,27 @@ class AirQualityPage extends StatelessWidget {
                               return Row(
                                 children: [
                                   const SizedBox(
-                                    width: 15,
+                                    width: 20,
                                   ),
                                   Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(40),
                                       gradient: kGradient1,
                                     ),
-                                    width: 50,
+                                    width: 54,
                                     child: ListView(
                                         shrinkWrap: true,
-                                        itemExtent: 200,
+                                        itemExtent: 160,
                                         children: [
                                           Column(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.center,
+                                            MainAxisAlignment.center,
                                             children: [
                                               const Text(
-                                                'MON',
+                                                'Mon',
                                                 style: TextStyle(
+                                                    letterSpacing: 1,
+                                                    fontSize: 11,
                                                     fontWeight: FontWeight.w600,
                                                     color: Colors.white),
                                               ),
@@ -199,43 +202,47 @@ class AirQualityPage extends StatelessWidget {
                                               Text(
                                                 '${index}Feb',
                                                 style: const TextStyle(
+                                                    letterSpacing: 0.8,
+                                                    fontSize: 10.7,
                                                     color: Colors.white),
                                               ),
-                                              Container(height: 20),
-                                              const Icon(Icons.cloud),
-                                              Container(height: 20),
+                                              Container(height: 10),
+                                              Container(
+                                                  height:30,
+                                                  width:30,
+                                                  child: Image.asset('assets/images/gif/partly_cloudy.gif')),
+                                              Container(height: 10),
                                               const Text(
-                                                '26',
+                                                '26°',
                                                 style: TextStyle(
+                                                    color: Colors.white,
                                                     fontSize: 23,
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                                    fontWeight: FontWeight.bold),
                                               ),
                                               const SizedBox(
-                                                height: 10,
+                                                height: 5,
                                               ),
                                               Container(
                                                 decoration: BoxDecoration(
                                                   borderRadius:
-                                                      BorderRadius.circular(20),
+                                                  BorderRadius.circular(20),
                                                   color: Colors.redAccent,
                                                 ),
                                                 child: const Text(
                                                   '193',
                                                   style: TextStyle(
+                                                      fontSize: 11,
                                                       color: Colors.white),
                                                 ),
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 6,
-                                                        vertical: 2),
+                                                padding: const EdgeInsets.symmetric(
+                                                    horizontal: 07, vertical: 2),
                                               )
                                             ],
                                           ),
                                         ]),
                                   ),
                                   const SizedBox(
-                                    width: 20,
+                                    width: 15,
                                   ),
                                 ],
                               );
@@ -321,10 +328,9 @@ Widget _getRadialGauge() {
           ],
           annotations: <GaugeAnnotation>[
             GaugeAnnotation(
-                widget: Container(
-                    child: const Text('100.0',
-                        style: TextStyle(
-                            fontSize: 40, fontWeight: FontWeight.bold))),
+                widget:  Text('100.0',
+                    style: TextStyle(
+                        fontSize: 40, fontWeight: FontWeight.bold)),
                 angle: 90,
                 positionFactor: 0.5),
             GaugeAnnotation(
